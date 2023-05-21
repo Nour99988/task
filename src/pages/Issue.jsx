@@ -35,7 +35,9 @@ const Issue = () => {
 
   const resetForm = () => {
     fromRef.current.reset();
+    // For resrt The state
     remove();
+    // for force render
     SetforceRender(Date.now().toString());
   };
 
