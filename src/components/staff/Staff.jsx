@@ -80,13 +80,14 @@ const Staff = ({ handleCheckboxChange }) => {
   return (
     <div className="staff" ref={parentRef}>
       <span className="title">Direct it to whom?</span>
-      <div className="options" ref={div}>
-        <div class="selectBox" onclick="showCheckboxes()" onClick={hanelShow}>
+      <div className="options" ref={div} onClick={hanelShow}>
+        {/* <div class="selectBox" >
           <select>
             <option id="showSelected">select an option</option>
           </select>
-          <div class="overSelect"></div>
-        </div>
+          <div class="overSelect"></div> */}
+        {isMobileView && <div className="click">select your options</div>}
+        {/* </div> */}
         {renderOptions()}
       </div>
     </div>

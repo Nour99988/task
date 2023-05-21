@@ -76,13 +76,14 @@ const Departmant = ({ handleCheckboxChange }) => {
   return (
     <div className="departmant" ref={parentRef}>
       <span className="title">Relating to what departmant</span>
-      <div className="options-box" ref={div}>
-        <div class="selectBox" onClick={hanelShow}>
+      <div className="options-box" onClick={hanelShow} ref={div}>
+        {/* <div class="selectBox" >
           <select>
             <option id="showSelected">select an option</option>
           </select>
-          <div class="overSelect"></div>
-        </div>
+          <div class="overSelect"></div> */}
+        {isMobileView && <div className="click">select your options</div>}
+        {/* </div> */}
         {renderOptions()}
       </div>
     </div>

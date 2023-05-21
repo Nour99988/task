@@ -179,7 +179,15 @@ fieldset {
   display: none;
 }
 
+/* position: relative; */
 @media screen and (max-width: 700px) {
+  .container .companies,
+  .container .staff,
+  .container .departmant {
+    position: relative;
+    margin-bottom: 80px;
+  }
+
   .container .companies .options,
   .container .staff .options,
   .container .departmant .options-box {
@@ -188,21 +196,51 @@ fieldset {
     overflow: hidden;
     box-shadow: none;
     border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #000000;
+    padding-top: 5px;
+    position: absolute;
+    width: 100%;
+  }
+  .container .departmant .options-box {
+    z-index: 3;
   }
 
-  .container .companies .options .selectBox select,
-  .container .staff .options .selectBox select,
-  .container .departmant .options-box .selectBox select {
-    width: 100%;
-    text-align: center;
-    height: 30px;
-    border-radius: 5px;
+  .container .companies .options {
+    z-index: 2;
+  }
+  .container .staff .options {
+    z-index: 1;
+  }
+  .container .companies .options .click,
+  .container .staff .options .click,
+  .container .departmant .options-box .click {
+    margin-bottom: 8px;
+    cursor: pointer;
   }
 
   .container .companies .options label,
   .container .staff .options label,
   .container .departmant .options-box label {
     display: block;
+    height: fit-content;
+    background-color: #d9d9d9;
+    border: none;
+  }
+  .container .departmant .options-box > :not(label:first-of-type) {
+    border-left: none;
+  }
+  .container .companies .options label:hover,
+  .container .staff .options label:hover,
+  .container .departmant .options-box label:hover {
+    box-shadow: inherit;
+    color: inherit;
+  }
+  .container .departmant .options-box label:first-of-type {
+    border-radius: 0px;
+  }
+  .container .departmant .options-box label:last-of-type {
+    border-radius: 0px;
   }
 }
 

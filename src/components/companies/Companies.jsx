@@ -94,12 +94,13 @@ const Companies = ({ handleCheckboxChange }) => {
   return (
     <div className="companies" ref={parentRef}>
       <span className="title">Relating to which</span>
-      <div className="options" ref={div}>
-        <div class="selectBox" onClick={hanelShow}>
-          <select>
+      <div className="options" onClick={hanelShow} ref={div}>
+        {/* <div class="selectBox"> */}
+        {/* <select>
             <option id="showSelected">select an option</option>
-          </select>
-        </div>
+          </select> */}
+        {/* </div> */}
+        {isMobileView && <div className="click">select your options</div>}
         {renderOptions()}
       </div>
     </div>
