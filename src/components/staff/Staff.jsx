@@ -1,60 +1,70 @@
-import React from "react";
+import { useRef, useState, useEffect } from "react";
 
 const Staff = ({ handleCheckboxChange }) => {
+  const parentRef = useRef(null);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 500);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const renderOptions = () => {
+    const staff = [
+      { id: "one", label: "one", image: "./assets/staff/one.svg" },
+      { id: "two", label: "two", image: "./assets/staff/two.svg" },
+      { id: "three", label: "three", image: "./assets/staff/three.svg" },
+      { id: "four", label: "four", image: "./assets/staff/four.svg" },
+      { id: "five", label: "five", image: "./assets/staff/five.svg" },
+      { id: "six", label: "six", image: "./assets/staff/six.svg" },
+      { id: "seven", label: "seven", image: "./assets/staff/seven.svg" },
+      { id: "eight", label: "eight", image: "./assets/staff/eight.svg" },
+      { id: "nine", label: "nine", image: "./assets/staff/nine.svg" },
+      { id: "ten", label: "ten", image: "./assets/staff/ten.svg" },
+    ];
+
+    if (isMobileView) {
+      return (
+        <select onChange={(e) => handleCheckboxChange(e)}>
+          {staff.map((staffMember) => (
+            <option key={staffMember.id} value={staffMember.id}>
+              {staffMember.label}
+            </option>
+          ))}
+        </select>
+      );
+    }
+
+    return staff.map((staffMember) => (
+      <>
+        <input
+          type="checkbox"
+          id={staffMember.id}
+          name="staff"
+          value={staffMember.id}
+          onChange={(e) => handleCheckboxChange(e)}
+        />
+        <label htmlFor={staffMember.id}>
+          <img src={staffMember.image} alt={staffMember.label} />
+        </label>
+      </>
+    ));
+  };
+
   return (
-    <>
-      <div className="staff">
-        <span className="title">Direct it to whome ?</span>
-        <div className="options">
-          <input type="checkbox" id="one" name="staff" value="one" onChange={handleCheckboxChange} />
-          <label htmlFor="one">
-            <img src="./assets/staff/one.svg" alt="dsd" />
-          </label>
-          <input type="checkbox" id="two" name="staff" value="two" onChange={handleCheckboxChange} />
-          <label htmlFor="two">
-            <img src="./assets/staff/two.svg" alt="dsd" />
-          </label>
-          <input type="checkbox" id="three" name="staff" value="three" onChange={handleCheckboxChange} />
-          <label htmlFor="three">
-            <img src="./assets/staff/three.svg" alt="dsd" />
-          </label>
-
-          <input type="checkbox" id="four" name="staff" value="four" onChange={handleCheckboxChange} />
-          <label htmlFor="four">
-            <img src="./assets/staff/four.svg" alt="dsd" />
-          </label>
-
-          <input type="checkbox" id="five" name="staff" value="five" onChange={handleCheckboxChange} />
-          <label htmlFor="five">
-            <img src="./assets/staff/five.svg" alt="dsd" />
-          </label>
-
-          <input type="checkbox" id="six" name="staff" value="six" onChange={handleCheckboxChange} />
-          <label htmlFor="six">
-            <img src="./assets/staff/six.svg" alt="dsd" />
-          </label>
-
-          <input type="checkbox" id="seven" name="staff" value="seven" onChange={handleCheckboxChange} />
-          <label htmlFor="seven">
-            <img src="./assets/staff/seven.svg" alt="dsd" />
-          </label>
-
-          <input type="checkbox" id="eight" name="staff" value="eight" onChange={handleCheckboxChange} />
-          <label htmlFor="eight">
-            <img src="./assets/staff/eight.svg" alt="dsd" />
-          </label>
-
-          <input type="checkbox" id="nine" name="staff" value="nine" onChange={handleCheckboxChange} />
-          <label htmlFor="nine">
-            <img src="./assets/staff/nine.svg" alt="dsd" />
-          </label>
-          <input type="checkbox" id="ten" name="staff" value="ten" onChange={handleCheckboxChange} />
-          <label htmlFor="ten">
-            <img src="./assets/staff/ten.svg" alt="dsd" />
-          </label>
-        </div>
-      </div>
-    </>
+    <div className="staff" ref={parentRef}>
+      <span className="title">Direct it to whom?</span>
+      <div className="options">{renderOptions()}</div>
+    </div>
   );
 };
 

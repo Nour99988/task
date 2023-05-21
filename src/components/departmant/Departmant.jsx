@@ -1,81 +1,67 @@
-import React from "react";
-// import useForm from "../../hooks/useForm";
+import { useRef, useState, useEffect } from "react";
+
 const Departmant = ({ handleCheckboxChange }) => {
-  // const { handleCheckboxChange } = useForm();
+  const parentRef = useRef(null);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 500);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const renderOptions = () => {
+    const departmants = [
+      { id: "security", label: "Security" },
+      { id: "suppler", label: "Suppler" },
+      { id: "human-res", label: "Human Resources" },
+      { id: "logistic", label: "Logistic" },
+      { id: "marketing", label: "Marketing" },
+      { id: "sales", label: "Sales" },
+      { id: "accounting", label: "Accounting" },
+      { id: "finance", label: "Finance" },
+      { id: "administrative", label: "Administrative" },
+    ];
+
+    if (isMobileView) {
+      return (
+        <select onChange={(e) => handleCheckboxChange(e)}>
+          {departmants.map((departmant) => (
+            <option key={departmant.id} value={departmant.id}>
+              {departmant.label}
+            </option>
+          ))}
+        </select>
+      );
+    }
+
+    return departmants.map((departmant) => (
+      <>
+        <input
+          type="checkbox"
+          id={departmant.id}
+          name="departmant"
+          value={departmant.id}
+          onChange={(e) => handleCheckboxChange(e)}
+        />
+        <label htmlFor={departmant.id}>{departmant.label}</label>
+      </>
+    ));
+  };
+
   return (
-    <>
-      <div className="departmant">
-        <span className="title">Relating to what departent</span>
-        <div className="options-box">
-          <input
-            type="checkbox"
-            id="security"
-            name="departmant"
-            value="security"
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          <label htmlFor="security">Security</label>
-          <input
-            type="checkbox"
-            id="suppler"
-            name="departmant"
-            value="suppler"
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          <label htmlFor="suppler">Suppler</label>
-          <input
-            type="checkbox"
-            id="human-res"
-            name="departmant"
-            value="human-res"
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          <label htmlFor="human-res">Human Resources</label>
-          <input
-            type="checkbox"
-            id="logistic"
-            name="departmant"
-            value="logistic"
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          <label htmlFor="logistic">Logistic</label>
-          <input
-            type="checkbox"
-            id="marketing"
-            name="departmant"
-            value="marketing"
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          <label htmlFor="marketing">Marketing</label>
-          <input type="checkbox" id="sales" name="departmant" value="sales" onChange={(e) => handleCheckboxChange(e)} />
-          <label htmlFor="sales">Sales</label>
-          <input
-            type="checkbox"
-            id="accounting"
-            name="departmant"
-            value="accounting"
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          <label htmlFor="accounting">Accounting</label>
-          <input
-            type="checkbox"
-            id="finance"
-            name="departmant"
-            value="finance"
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          <label htmlFor="finance">Finance</label>
-          <input
-            type="checkbox"
-            id="administrative"
-            name="departmant"
-            value="administrative"
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          <label htmlFor="administrative">Administrative</label>
-        </div>
-      </div>
-    </>
+    <div className="departmant" ref={parentRef}>
+      <span className="title">Relating to what departmant</span>
+      <div className="options-box">{renderOptions()}</div>
+    </div>
   );
 };
 
