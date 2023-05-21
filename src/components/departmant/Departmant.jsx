@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from "react";
-
+import { toggleShow } from "../../hooks/helper";
 const Departmant = ({ handleCheckboxChange }) => {
   const parentRef = useRef(null);
   const [isMobileView, setIsMobileView] = useState(false);
-
+  const div = useRef(null);
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth < 500);
@@ -17,7 +17,9 @@ const Departmant = ({ handleCheckboxChange }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  const hanelShow = () => {
+    toggleShow(div);
+  };
   const renderOptions = () => {
     const departmants = [
       { id: "security", label: "Security" },
@@ -32,16 +34,30 @@ const Departmant = ({ handleCheckboxChange }) => {
     ];
 
     if (isMobileView) {
-      return (
-        <select onChange={(e) => handleCheckboxChange(e)}>
-          {departmants.map((departmant) => (
-            <option key={departmant.id} value={departmant.id}>
-              {departmant.label}
-            </option>
-          ))}
-        </select>
-      );
+      return departmants.map((departmant) => (
+        <>
+          <input
+            type="checkbox"
+            id={departmant.id}
+            name="departmant"
+            value={departmant.id}
+            onChange={(e) => handleCheckboxChange(e)}
+          />
+          <label htmlFor={departmant.id}>{departmant.label}</label>
+        </>
+      ));
     }
+
+    //   return (
+    //     <select onChange={(e) => handleCheckboxChange(e)}>
+    //       {departmants.map((departmant) => (
+    //         <option key={departmant.id} value={departmant.id}>
+    //           {departmant.label}
+    //         </option>
+    //       ))}
+    //     </select>
+    //   );
+    // }
 
     return departmants.map((departmant) => (
       <>
@@ -60,7 +76,15 @@ const Departmant = ({ handleCheckboxChange }) => {
   return (
     <div className="departmant" ref={parentRef}>
       <span className="title">Relating to what departmant</span>
-      <div className="options-box">{renderOptions()}</div>
+      <div className="options-box" ref={div}>
+        <div class="selectBox" onClick={hanelShow}>
+          <select>
+            <option id="showSelected">select an option</option>
+          </select>
+          <div class="overSelect"></div>
+        </div>
+        {renderOptions()}
+      </div>
     </div>
   );
 };

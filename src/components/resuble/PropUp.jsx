@@ -2,7 +2,6 @@ import React from "react";
 import style from "./propup.module.css";
 
 const PropUp = ({ title, error, close }) => {
-  console.log(error);
   return (
     <div>
       <div className={style.backdrop} onClick={() => close(false)}></div>

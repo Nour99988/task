@@ -1,21 +1,33 @@
 import { useRef, useState, useEffect } from "react";
+import { toggleShow } from "../../hooks/helper";
 
 const Companies = ({ handleCheckboxChange }) => {
   const parentRef = useRef(null);
   const [isMobileView, setIsMobileView] = useState(false);
+  const div = useRef(null);
   const handleResize = () => {
     setIsMobileView(window.innerWidth < 500);
   };
 
   useEffect(() => {
-    // handleResize();
-
     window.addEventListener("resize", handleResize);
-
+    handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const hanelShow = () => {
+    toggleShow(div);
+  };
+  // const hanelShow = () => {
+  //   const element = div.current.style.overflow;
+  //   if (element === "visible") {
+  //     div.current.style.overflow = "hidden";
+  //   } else {
+  //     div.current.style.overflow = "visible";
+  //   }
+  // };
 
   const renderOptions = () => {
     const companies = [
@@ -37,15 +49,30 @@ const Companies = ({ handleCheckboxChange }) => {
     ];
 
     if (isMobileView) {
-      return (
-        <select onChange={(e) => handleCheckboxChange(e)}>
-          {companies.map((company) => (
-            <option key={company.id} value={company.id}>
-              {company.label}
-            </option>
-          ))}
-        </select>
-      );
+      return companies.map((company) => (
+        <>
+          <input
+            type="checkbox"
+            id={company.id}
+            name="company"
+            value={company.id}
+            onChange={(e) => handleCheckboxChange(e)}
+          />
+          <label htmlFor={company.id}>
+            {company.id}
+            {/* <img src={company.logo} alt={company.label} /> */}
+          </label>
+        </>
+      ));
+      // return (
+      //   <select multiple size={1} onChange={(e) => handleCheckboxChange(e)}>
+      //     {companies.map((company) => (
+      //       <option key={company.id} value={company.id}>
+      //         {company.label}
+      //       </option>
+      //     ))}
+      //   </select>
+      // );
     }
 
     return companies.map((company) => (
@@ -67,7 +94,14 @@ const Companies = ({ handleCheckboxChange }) => {
   return (
     <div className="companies" ref={parentRef}>
       <span className="title">Relating to which</span>
-      <div className="options">{renderOptions()}</div>
+      <div className="options" ref={div}>
+        <div class="selectBox" onClick={hanelShow}>
+          <select>
+            <option id="showSelected">select an option</option>
+          </select>
+        </div>
+        {renderOptions()}
+      </div>
     </div>
   );
 };

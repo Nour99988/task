@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from "react";
-
+import { toggleShow } from "../../hooks/helper";
 const Staff = ({ handleCheckboxChange }) => {
   const parentRef = useRef(null);
   const [isMobileView, setIsMobileView] = useState(false);
-
+  const div = useRef(null);
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth < 500);
@@ -17,7 +17,9 @@ const Staff = ({ handleCheckboxChange }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  const hanelShow = () => {
+    toggleShow(div);
+  };
   const renderOptions = () => {
     const staff = [
       { id: "one", label: "one", image: "./assets/staff/one.svg" },
@@ -33,15 +35,30 @@ const Staff = ({ handleCheckboxChange }) => {
     ];
 
     if (isMobileView) {
-      return (
-        <select onChange={(e) => handleCheckboxChange(e)}>
-          {staff.map((staffMember) => (
-            <option key={staffMember.id} value={staffMember.id}>
-              {staffMember.label}
-            </option>
-          ))}
-        </select>
-      );
+      return staff.map((staffMember) => (
+        <>
+          <input
+            type="checkbox"
+            id={staffMember.id}
+            name="staff"
+            value={staffMember.id}
+            onChange={(e) => handleCheckboxChange(e)}
+          />
+          <label htmlFor={staffMember.id}>
+            {staffMember.id}
+            {/* <img src={staffMember.image} alt={staffMember.label} /> */}
+          </label>
+        </>
+      ));
+      // return (
+      //   <select onChange={(e) => handleCheckboxChange(e)}>
+      //     {staff.map((staffMember) => (
+      //       <option key={staffMember.id} value={staffMember.id}>
+      //         {staffMember.label}
+      //       </option>
+      //     ))}
+      //   </select>
+      // );
     }
 
     return staff.map((staffMember) => (
@@ -63,7 +80,15 @@ const Staff = ({ handleCheckboxChange }) => {
   return (
     <div className="staff" ref={parentRef}>
       <span className="title">Direct it to whom?</span>
-      <div className="options">{renderOptions()}</div>
+      <div className="options" ref={div}>
+        <div class="selectBox" onclick="showCheckboxes()" onClick={hanelShow}>
+          <select>
+            <option id="showSelected">select an option</option>
+          </select>
+          <div class="overSelect"></div>
+        </div>
+        {renderOptions()}
+      </div>
     </div>
   );
 };

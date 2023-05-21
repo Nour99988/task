@@ -12,14 +12,27 @@ fieldset {
     padding: 14px 15px 57px;
   }
 }
+.container .departmant .options-box label,
+.container .type-issue label {
+  box-shadow: inset 0 0 0 0 #54b3d6;
+  color: #000;
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.container .departmant .options-box label:hover,
+.container .type-issue label:hover {
+  box-shadow: inset 300px 0 0 0 #54b3d6;
+  color: white;
+}
 
 @media screen and (max-width: 1200px) {
   .container {
     padding: 14px 25px 57px;
   }
 }
-
-.type-issue {
+/* type-issue */
+.container .type-issue {
   text-align: center;
   margin: auto;
   margin: 26px 21px;
@@ -27,13 +40,13 @@ fieldset {
   position: relative;
 }
 
-.type-issue > label {
+.container .type-issue > label {
   width: 120px;
   display: inline-block;
   padding-top: 6px;
 }
 
-.type-issue > label,
+.container .type-issue > label,
 .container .departmant .options-box label {
   cursor: pointer;
   background-color: #d9d9d9;
@@ -41,40 +54,30 @@ fieldset {
   height: 31px;
 }
 
-.type-issue > label:first-of-type,
+.container .type-issue > label:first-of-type,
 .container .departmant .options-box label:first-of-type {
   border-radius: 9px 0 0 9px;
 }
 
-@media screen and (max-width: 700px) {
-  .container .departmant .options-box label {
-    padding: 20px;
-    margin: 5px;
-    /*I use !important beacuse i maked the border by sudo class review this selector .type-issue > label:first-of-type, .container .departmant .options-box label:first-of-type */
-    border: none !important;
-    border-radius: 5px;
-  }
-}
-
-.type-issue > label:last-of-type,
+.container .type-issue > label:last-of-type,
 .container .departmant .options-box label:last-of-type {
   border-radius: 0 9px 9px 0;
   border-left: 1px solid #000;
 }
 
-.type-issue > input,
+.container .type-issue > input,
 .container .departmant .options-box input,
 .container .companies .options input {
   display: none;
 }
 
-.type-issue > input:checked + label,
+.container .type-issue > input:checked + label,
 .container .departmant .options-box > input:checked + label {
   background-color: red;
 }
 
-.container .departmant .title,
-.container .companies .title {
+/* departmant */
+.container .departmant .title {
   font-size: 20px;
   display: block;
 }
@@ -89,11 +92,18 @@ fieldset {
 .container .departmant .options-box label {
   padding-top: 7px;
   flex-grow: 1;
-  flex-grow: 1;
 }
+
 .container .departmant .options-box > :not(label:first-of-type) {
   border-left: 1px solid #000;
 }
+
+/* companies */
+.container .companies .title {
+  font-size: 20px;
+  display: block;
+}
+
 .container .companies .options {
   margin: 25px auto 14px;
   display: flex;
@@ -114,24 +124,43 @@ fieldset {
   transition: 0.5s;
 }
 
-@media screen and (max-width: 870px) {
-  .container .companies .options label {
-    gap: 10px;
-  }
+.container .companies .options label:hover,
+.container .staff .options label:hover {
+  scale: 150%;
 }
 
-.container .staff .options label img {
-  transition: 0.5s;
+.container .companies .options label {
 }
 
-.container .staff .options label img:hover {
-  transform: rotate(360deg);
+.container .staff .options label:hover {
 }
 
 .container .companies .options > input:checked + label {
   border: 2px solid red;
 }
 
+@media screen and (max-width: 700px) {
+  .container .companies .options {
+    display: block;
+    height: 30px;
+    overflow: hidden;
+    box-shadow: none;
+    border-radius: 5px;
+  }
+
+  .container .companies .options .selectBox select {
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    border-radius: 5px;
+  }
+
+  .container .companies .options label {
+    display: block;
+  }
+}
+
+/* staff */
 .container .staff .title {
   display: block;
   font-size: 20px;
@@ -150,47 +179,34 @@ fieldset {
   display: none;
 }
 
-.container .texts {
-  display: grid;
-  grid-template-columns: 15fr repeat(3, 3.75fr) 5.4fr 1fr;
-  gap: 0 20px;
-  max-width: 1160px;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  margin-top: 41px;
-}
-
-.container .texts > div label {
-  display: block;
-  margin-bottom: 16px;
-  padding-top: 1px;
-}
-
-.container .texts > div input,
-.container .texts > div p {
-  display: inline-block;
-  width: 100%;
-  border: 2px solid #000000;
-  height: 58px;
-  border-radius: 9px;
-}
-@media screen and (max-width: 900px) {
-  .container .texts {
-    grid-template-columns: 1fr;
+@media screen and (max-width: 700px) {
+  .container .companies .options,
+  .container .staff .options,
+  .container .departmant .options-box {
+    display: block;
+    height: 30px;
+    overflow: hidden;
+    box-shadow: none;
+    border-radius: 5px;
   }
-  .container .texts > div label {
-    margin: 15px auto 5px;
+
+  .container .companies .options .selectBox select,
+  .container .staff .options .selectBox select,
+  .container .departmant .options-box .selectBox select {
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    border-radius: 5px;
+  }
+
+  .container .companies .options label,
+  .container .staff .options label,
+  .container .departmant .options-box label {
+    display: block;
   }
 }
 
-.container .texts > div .image {
-  height: 58px;
-}
-.container .texts > div input[type="file"] {
-  display: none;
-}
-
+/* date */
 .container .date {
   margin: 29px auto 49px;
 }
@@ -220,6 +236,56 @@ fieldset {
   left: 0;
 }
 
+/* texts */
+.container .texts {
+  display: grid;
+  grid-template-columns: 15fr repeat(3, 3.75fr) 5.4fr 1fr;
+  gap: 0 20px;
+  max-width: 1160px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 41px;
+}
+
+.container .texts > div label {
+  display: block;
+  margin-bottom: 16px;
+  padding-top: 1px;
+}
+
+.container .texts > div input,
+.container .texts > div p,
+.container .texts > div textarea {
+  display: inline-block;
+  width: 100%;
+  border: 2px solid #000000;
+  height: 58px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 500;
+  resize: vertical;
+  padding: 5px;
+}
+
+.container .texts > div .image {
+  height: 58px;
+}
+
+.container .texts > div input[type="file"] {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .container .texts {
+    grid-template-columns: 1fr;
+  }
+  .container .texts > div label {
+    margin: 15px auto 5px;
+  }
+}
+
+/* send */
 .container .send {
   display: flex;
   flex-wrap: wrap;

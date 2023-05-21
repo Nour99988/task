@@ -59,7 +59,13 @@ const Issue = () => {
           <div className="texts">
             <div>
               <label>Issue</label>
-              <input type="texterea" value={formData.issue} name="issue" onChange={handleChange} />
+              <textarea
+                type="texterea"
+                value={formData.issue}
+                name="issue"
+                onChange={handleChange}
+                placeholder="  Type your issue"
+              ></textarea>
             </div>
             <div>
               <label>Choices</label>
