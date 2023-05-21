@@ -1,0 +1,201 @@
+fieldset {
+  border: none;
+}
+
+.container {
+  text-align: center;
+  padding: 14px 0 57px;
+}
+
+.type-issue {
+  text-align: center;
+  margin: auto;
+  margin: 26px 21px;
+  border-radius: 9px;
+  position: relative;
+}
+
+.type-issue > label {
+  width: 120px;
+  display: inline-block;
+  padding-top: 6px;
+}
+
+.type-issue > label,
+.container .departmant .options-box label {
+  cursor: pointer;
+  background-color: #d9d9d9;
+  font-size: 13px;
+  height: 31px;
+}
+
+.type-issue > label:first-of-type,
+.container .departmant .options-box label:first-of-type {
+  border-radius: 9px 0 0 9px;
+  /* border-right: 1px solid #000; */
+}
+.type-issue > label:last-of-type,
+.container .departmant .options-box label:last-of-type {
+  border-radius: 0 9px 9px 0;
+  border-left: 1px solid #000;
+}
+
+.type-issue > input,
+.container .departmant .options-box input,
+.container .companies .options input {
+  display: none;
+}
+
+.type-issue > input:checked + label,
+.container .departmant .options-box > input:checked + label {
+  background-color: red;
+}
+
+.container .departmant .title,
+.container .companies .title {
+  font-size: 20px;
+  display: block;
+}
+
+.container .departmant .options-box label:last-of-type {
+}
+
+.container .departmant .options-box {
+  margin: 19px auto 21px;
+  max-width: 993px;
+  display: flex;
+  /* width: fit-content; */
+}
+
+.container .departmant .options-box label {
+  padding-top: 7px;
+  flex-grow: 1;
+  flex-grow: 1;
+}
+.container .departmant .options-box > :not(label:first-of-type) {
+  border-left: 1px solid #000;
+}
+.container .companies .options {
+  margin: 25px auto 14px;
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 1081px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+  height: 34px;
+  align-items: center;
+}
+
+.container .companies .options label,
+.container .staff .options label {
+  cursor: pointer;
+}
+.container .companies .options > input:checked + label {
+  border: 2px solid red;
+}
+
+.container .companies .options > input:checked + label > img {
+}
+
+.container .staff .title {
+  display: block;
+  font-size: 20px;
+  margin-top: 34px;
+  margin-bottom: 21px;
+}
+
+.container .staff .options {
+  display: flex;
+  justify-content: center;
+  gap: 0 22px;
+}
+
+.container .staff .options input {
+  display: none;
+}
+
+.container .staff .options label {
+  /* margin-left: 22px; */
+}
+
+.container .texts {
+  display: grid;
+  grid-template-columns: 15fr repeat(3, 3.75fr) 5.4fr 1fr;
+  gap: 0 20px;
+  max-width: 1160px;
+  /* grid-template-columns: repeat(6, auto); */
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 41px;
+  /* width: 1160px; */
+}
+
+.container .texts > div {
+}
+
+.container .texts > div label {
+  display: block;
+  margin-bottom: 16px;
+  padding-top: 1px;
+}
+
+.container .texts > div input,
+.container .texts > div p {
+  display: inline-block;
+  width: 100%;
+  border: 2px solid #000000;
+  height: 58px;
+  border-radius: 9px;
+}
+.container .texts > div .image {
+  height: 58px;
+}
+.container .texts > div input[type="file"] {
+  display: none;
+}
+
+.container .date {
+  margin: 29px auto 49px;
+}
+.container .date .title {
+  font-size: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.container .date > .datepick {
+  position: relative;
+  margin: auto;
+  height: 27px;
+  width: 344px;
+}
+
+.container .date > .datepick input {
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-align: center;
+}
+
+.container .date > .datepick .rdtPicker {
+  /* position: absolute; */
+  bottom: 27px;
+  width: 100%;
+  left: 0;
+}
+
+.container .send {
+  display: flex;
+  margin: 57px;
+  justify-content: space-evenly;
+}
+
+.container .send button {
+  height: 48px;
+  width: 213px;
+  border-radius: 23px;
+  background-color: #d9d9d9;
+  border: none;
+  cursor: pointer;
+}
