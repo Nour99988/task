@@ -6,7 +6,7 @@ const Departmant = ({ handleCheckboxChange }) => {
   const div = useRef(null);
   useEffect(() => {
     const handleResize = () => {
-      setIsMobileView(window.innerWidth < 500);
+      setIsMobileView(window.innerWidth < 700);
     };
 
     handleResize();
@@ -35,7 +35,7 @@ const Departmant = ({ handleCheckboxChange }) => {
 
     if (isMobileView) {
       return departmants.map((departmant) => (
-        <>
+        <div key={departmant.id}>
           <input
             type="checkbox"
             id={departmant.id}
@@ -44,23 +44,12 @@ const Departmant = ({ handleCheckboxChange }) => {
             onChange={(e) => handleCheckboxChange(e)}
           />
           <label htmlFor={departmant.id}>{departmant.label}</label>
-        </>
+        </div>
       ));
     }
 
-    //   return (
-    //     <select onChange={(e) => handleCheckboxChange(e)}>
-    //       {departmants.map((departmant) => (
-    //         <option key={departmant.id} value={departmant.id}>
-    //           {departmant.label}
-    //         </option>
-    //       ))}
-    //     </select>
-    //   );
-    // }
-
     return departmants.map((departmant) => (
-      <>
+      <div key={departmant.id}>
         <input
           type="checkbox"
           id={departmant.id}
@@ -69,7 +58,7 @@ const Departmant = ({ handleCheckboxChange }) => {
           onChange={(e) => handleCheckboxChange(e)}
         />
         <label htmlFor={departmant.id}>{departmant.label}</label>
-      </>
+      </div>
     ));
   };
 
@@ -77,13 +66,7 @@ const Departmant = ({ handleCheckboxChange }) => {
     <div className="departmant" ref={parentRef}>
       <span className="title">Relating to what departmant</span>
       <div className="options-box" onClick={hanelShow} ref={div}>
-        {/* <div class="selectBox" >
-          <select>
-            <option id="showSelected">select an option</option>
-          </select>
-          <div class="overSelect"></div> */}
         {isMobileView && <div className="click">select your options</div>}
-        {/* </div> */}
         {renderOptions()}
       </div>
     </div>

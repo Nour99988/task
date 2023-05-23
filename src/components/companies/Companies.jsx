@@ -6,7 +6,7 @@ const Companies = ({ handleCheckboxChange }) => {
   const [isMobileView, setIsMobileView] = useState(false);
   const div = useRef(null);
   const handleResize = () => {
-    setIsMobileView(window.innerWidth < 500);
+    setIsMobileView(window.innerWidth < 700);
   };
 
   useEffect(() => {
@@ -20,14 +20,6 @@ const Companies = ({ handleCheckboxChange }) => {
   const hanelShow = () => {
     toggleShow(div);
   };
-  // const hanelShow = () => {
-  //   const element = div.current.style.overflow;
-  //   if (element === "visible") {
-  //     div.current.style.overflow = "hidden";
-  //   } else {
-  //     div.current.style.overflow = "visible";
-  //   }
-  // };
 
   const renderOptions = () => {
     const companies = [
@@ -50,7 +42,7 @@ const Companies = ({ handleCheckboxChange }) => {
 
     if (isMobileView) {
       return companies.map((company) => (
-        <>
+        <div key={company.id}>
           <input
             type="checkbox"
             id={company.id}
@@ -62,21 +54,12 @@ const Companies = ({ handleCheckboxChange }) => {
             {company.id}
             {/* <img src={company.logo} alt={company.label} /> */}
           </label>
-        </>
+        </div>
       ));
-      // return (
-      //   <select multiple size={1} onChange={(e) => handleCheckboxChange(e)}>
-      //     {companies.map((company) => (
-      //       <option key={company.id} value={company.id}>
-      //         {company.label}
-      //       </option>
-      //     ))}
-      //   </select>
-      // );
     }
 
     return companies.map((company) => (
-      <>
+      <div key={company.id}>
         <input
           type="checkbox"
           id={company.id}
@@ -87,7 +70,7 @@ const Companies = ({ handleCheckboxChange }) => {
         <label htmlFor={company.id}>
           <img src={company.logo} alt={company.label} />
         </label>
-      </>
+      </div>
     ));
   };
 
@@ -95,11 +78,6 @@ const Companies = ({ handleCheckboxChange }) => {
     <div className="companies" ref={parentRef}>
       <span className="title">Relating to which</span>
       <div className="options" onClick={hanelShow} ref={div}>
-        {/* <div class="selectBox"> */}
-        {/* <select>
-            <option id="showSelected">select an option</option>
-          </select> */}
-        {/* </div> */}
         {isMobileView && <div className="click">select your options</div>}
         {renderOptions()}
       </div>

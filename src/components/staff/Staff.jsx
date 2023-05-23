@@ -6,7 +6,7 @@ const Staff = ({ handleCheckboxChange }) => {
   const div = useRef(null);
   useEffect(() => {
     const handleResize = () => {
-      setIsMobileView(window.innerWidth < 500);
+      setIsMobileView(window.innerWidth < 700);
     };
 
     handleResize();
@@ -36,7 +36,7 @@ const Staff = ({ handleCheckboxChange }) => {
 
     if (isMobileView) {
       return staff.map((staffMember) => (
-        <>
+        <div key={staffMember.id}>
           <input
             type="checkbox"
             id={staffMember.id}
@@ -48,7 +48,7 @@ const Staff = ({ handleCheckboxChange }) => {
             {staffMember.id}
             {/* <img src={staffMember.image} alt={staffMember.label} /> */}
           </label>
-        </>
+        </div>
       ));
       // return (
       //   <select onChange={(e) => handleCheckboxChange(e)}>
@@ -62,7 +62,7 @@ const Staff = ({ handleCheckboxChange }) => {
     }
 
     return staff.map((staffMember) => (
-      <>
+      <div key={staffMember.id}>
         <input
           type="checkbox"
           id={staffMember.id}
@@ -73,7 +73,7 @@ const Staff = ({ handleCheckboxChange }) => {
         <label htmlFor={staffMember.id}>
           <img src={staffMember.image} alt={staffMember.label} />
         </label>
-      </>
+      </div>
     ));
   };
 
@@ -81,13 +81,7 @@ const Staff = ({ handleCheckboxChange }) => {
     <div className="staff" ref={parentRef}>
       <span className="title">Direct it to whom?</span>
       <div className="options" ref={div} onClick={hanelShow}>
-        {/* <div class="selectBox" >
-          <select>
-            <option id="showSelected">select an option</option>
-          </select>
-          <div class="overSelect"></div> */}
         {isMobileView && <div className="click">select your options</div>}
-        {/* </div> */}
         {renderOptions()}
       </div>
     </div>
