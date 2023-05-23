@@ -69,11 +69,11 @@ const Issue = () => {
             </div>
             <div>
               <label>Choices</label>
-              <p type="text">{formData.departmant?.join("/")}</p>
+              <p type="text">{formData.departmant?.join("  ")}</p>
             </div>
             <div>
               <label>Choices</label>
-              <p type="text">{formData.company?.join("/")}</p>
+              <p type="text">{formData.company?.join("  ")}</p>
             </div>
             <div>
               <label>Choices</label>

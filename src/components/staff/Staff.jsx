@@ -44,21 +44,9 @@ const Staff = ({ handleCheckboxChange }) => {
             value={staffMember.id}
             onChange={(e) => handleCheckboxChange(e)}
           />
-          <label htmlFor={staffMember.id}>
-            {staffMember.id}
-            {/* <img src={staffMember.image} alt={staffMember.label} /> */}
-          </label>
+          <label htmlFor={staffMember.id}>{staffMember.id}</label>
         </div>
       ));
-      // return (
-      //   <select onChange={(e) => handleCheckboxChange(e)}>
-      //     {staff.map((staffMember) => (
-      //       <option key={staffMember.id} value={staffMember.id}>
-      //         {staffMember.label}
-      //       </option>
-      //     ))}
-      //   </select>
-      // );
     }
 
     return staff.map((staffMember) => (

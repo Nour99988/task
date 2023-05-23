@@ -35,7 +35,7 @@ const Departmant = ({ handleCheckboxChange }) => {
 
     if (isMobileView) {
       return departmants.map((departmant) => (
-        <div key={departmant.id}>
+        <>
           <input
             type="checkbox"
             id={departmant.id}
@@ -44,12 +44,12 @@ const Departmant = ({ handleCheckboxChange }) => {
             onChange={(e) => handleCheckboxChange(e)}
           />
           <label htmlFor={departmant.id}>{departmant.label}</label>
-        </div>
+        </>
       ));
     }
 
     return departmants.map((departmant) => (
-      <div key={departmant.id}>
+      <>
         <input
           type="checkbox"
           id={departmant.id}
@@ -58,7 +58,7 @@ const Departmant = ({ handleCheckboxChange }) => {
           onChange={(e) => handleCheckboxChange(e)}
         />
         <label htmlFor={departmant.id}>{departmant.label}</label>
-      </div>
+      </>
     ));
   };
 

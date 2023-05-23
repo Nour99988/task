@@ -50,10 +50,7 @@ const Companies = ({ handleCheckboxChange }) => {
             value={company.id}
             onChange={(e) => handleCheckboxChange(e)}
           />
-          <label htmlFor={company.id}>
-            {company.id}
-            {/* <img src={company.logo} alt={company.label} /> */}
-          </label>
+          <label htmlFor={company.id}>{company.id}</label>
         </div>
       ));
     }
