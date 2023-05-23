@@ -139,7 +139,7 @@ fieldset {
   position: relative;
   display: inline-block;
 }
-
+/* 
 .container .companies .options div > label::after {
   content: "";
   position: absolute;
@@ -152,7 +152,7 @@ fieldset {
 }
 
 .container .companies .options > input:checked + label::after {
-}
+} */
 
 @media screen and (max-width: 700px) {
   .container .companies .options {
@@ -234,28 +234,42 @@ fieldset {
     cursor: pointer;
   }
 
+  .container .companies .options div {
+    /* background-color: #d9d9d9; */
+  }
+
   .container .companies .options label,
   .container .staff .options label,
   .container .departmant .options-box label {
     display: block;
     height: fit-content;
     background-color: #d9d9d9;
+    width: 100%;
     border: none;
   }
   .container .departmant .options-box > :not(label:first-of-type) {
     border-left: none;
   }
-  .container .companies .options label:hover,
+  .container .companies .options label:hover {
+    scale: 100%;
+  }
   .container .staff .options label:hover,
   .container .departmant .options-box label:hover {
     box-shadow: inherit;
     color: inherit;
+    width: inherit;
+    scale: 100%;
   }
   .container .departmant .options-box label:first-of-type {
     border-radius: 0px;
   }
   .container .departmant .options-box label:last-of-type {
     border-radius: 0px;
+  }
+  .container .companies .options input:checked + label,
+  .container .staff .options input:checked + label,
+  .container .departmant .options-box input:checked + label {
+    background-color: red;
   }
 }
 
